@@ -26,9 +26,13 @@ export const authRouter = router({
         // creating  a new user
         await payload.create({
             collection:'users',
-            data:{},
-            
+            data:{
+                email, 
+                password,
+                role:'user',
 
+            },
         })
+        return {success:true,}
     }),
 });
