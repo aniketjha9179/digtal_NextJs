@@ -23,16 +23,16 @@ export const authRouter = router({
         throw new TRPCError({
           code: "CONFLICT",
         });
-        // creating  a new user
-        await payload.create({
-            collection:'users',
-            data:{
-                email, 
-                password,
-                role:'user',
-
-            },
-        })
-        return {success:true,}
+      // creating  a new user
+      await payload.create({
+        collection: "users",
+        data: {
+          email,
+          password,
+          role: "user",
+        },
+      });
+      
+      return { success: true,sentToEmail:email };
     }),
 });
