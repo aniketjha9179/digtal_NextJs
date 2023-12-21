@@ -46,6 +46,7 @@ export const getPayLoadClient = async ({
       email:{
         transport:transporter,
         fromAddress:"onboarding@resend.dev",
+        // fromAddress:"aniketjha917928@gmail.com",//dikkat hai bro isme
         fromName:"DigitalLock",
 
       },
