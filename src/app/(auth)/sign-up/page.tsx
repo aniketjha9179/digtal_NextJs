@@ -13,6 +13,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { ZodError } from "zod";
 
 // schema
 
@@ -29,15 +31,20 @@ const Page = () => {
   } = useForm<TAuthCredentialsValidator>({
     resolver: zodResolver(AuthCredentialsValidator),
   });
-const {mutate, isLoading}=trpc.auth.createPayloadUser.useMutation({
-    
-
-})
-
+  const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({
+    onError: (err) => {
+      if (err.data?.code === "CONFLICT") {
+        toast.error("This email is already use. Sign in instead? ");
+      }
+      if(err instanceof ZodError){
+        
+      }
+    },
+  });
 
   // validating credentials
   const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
-    mutate({email, password})
+    mutate({ email, password });
   };
 
   return (
@@ -81,16 +88,15 @@ const {mutate, isLoading}=trpc.auth.createPayloadUser.useMutation({
                 <div className=" grid gap-1 py-2">
                   <Label htmlFor="password">Password</Label>
                   <Input
-                  
                     {...register("password")}
-                    type="password"    
+                    type="password"
                     className={cn({
                       "focus-visible:ring-red-500": errors.password,
                     })}
                     placeholder="password"
                   />
                 </div>
-                <Button >Sign up</Button>
+                <Button>Sign up</Button>
               </div>
             </form>
           </div>
