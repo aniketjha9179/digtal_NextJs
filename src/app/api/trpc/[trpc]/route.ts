@@ -6,10 +6,11 @@ const handler = (req:Request)=>{
         endpoint:"/api/trpc",
         req,
         router:appRouter,
+        // @ts-expect-error :-context already passed from context middlewere
         createContext:()=>({}),
     })
 }
-
+  
 export {handler as GET, handler as POST}
 
 
