@@ -12,7 +12,7 @@ import { trpc } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { ZodError } from "zod";
@@ -23,6 +23,11 @@ import { ZodError } from "zod";
 // how to handle form in reactjs
 
 const Page = () => {
+    const searchParams =useSearchParams()
+    const router =useRouter();
+    const isSeller= searchParams.get('as')==='seller'
+    const origin= searchParams.get('origin')
+
   // how to handle form in reactjs
   // we can destructure 3 things
   const {
@@ -32,9 +37,8 @@ const Page = () => {
   } = useForm<TAuthCredentialsValidator>({
     resolver: zodResolver(AuthCredentialsValidator),
   });
-  const router = useRouter();
 
-  const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({
+  const { mutate, isLoading } = trpc.auth.signIn.useMutation({
     onError: (err) => {
       if (err.data?.code === "CONFLICT") {
         toast.error("This email is already use. Sign in instead? ");
@@ -129,6 +133,7 @@ const Page = () => {
                         or
                     </span>
                 </div>
+                
             </div>
           </div>
         </div>
