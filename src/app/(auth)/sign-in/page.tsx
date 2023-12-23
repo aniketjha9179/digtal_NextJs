@@ -28,12 +28,12 @@ const Page = () => {
   const isSeller = searchParams.get("as") === "seller";
   const origin = searchParams.get("origin");
 
-  const continueAsSeller=()=>{
-    router.push('?as=seller')
-  }
-  const continueAsBuyer=()=>{
-    router.replace('/sign-in', undefined)
-  }
+  const continueAsSeller = () => {
+    router.push("?as=seller");
+  };
+  const continueAsBuyer = () => {
+    router.replace("/sign-in", undefined);
+  };
   // how to handle form in reactjs
   // we can destructure 3 things
   const {
@@ -78,7 +78,8 @@ const Page = () => {
           <div className=" flex flex-col items-center space-y-2 text-center ">
             <Icons.logo className="  h-20 w-20" />
             <h1 className=" text-2xl font-bold text-gray-800">
-              Sign in to your account
+              Sign in to your {isSeller ? "seller" : ""}
+              {' '}account
             </h1>
             <Link
               className={buttonVariants({
@@ -148,16 +149,21 @@ const Page = () => {
               </div>
             </div>
             {isSeller ? (
-              <Button variant={'secondary'} 
-              disabled={isLoading}
-              onClick={continueAsBuyer}>Continue as customer</Button>
+              <Button
+                variant={"secondary"}
+                disabled={isLoading}
+                onClick={continueAsBuyer}
+              >
+                Continue as customer
+              </Button>
             ) : (
-              <Button 
-              variant={'secondary'} 
-              disabled={isLoading}
-              onClick={continueAsSeller}
-              
-              >Continue as seller</Button>
+              <Button
+                variant={"secondary"}
+                disabled={isLoading}
+                onClick={continueAsSeller}
+              >
+                Continue as seller
+              </Button>
             )}
           </div>
         </div>
