@@ -14,7 +14,10 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://loca![Screenshot 2023-12-28 202049](https://github.com/aniketjha9179/digtal_NextJs/assets/84675061/33eac061-33fa-435d-9905-98211e114632)
+lhost:3000](http://localhost:3000) with your browser to see the result.
+![Screenshot 2023-12-28 202120](https://github.com/aniketjha9179/digtal_NextJs/assets/84675061/804034dd-bcfc-4d88-aa34-ba9274a04ec1)
+![Screenshot 2023-12-28 202314](https://github.com/aniketjha9179/digtal_NextJs/assets/84675061/a4692588-68f9-4613-b151-b896822dbcec)
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
